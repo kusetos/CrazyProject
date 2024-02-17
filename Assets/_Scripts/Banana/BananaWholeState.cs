@@ -6,13 +6,13 @@ public class BananaWholeState : BananaBaseState
 {
     public override void EnterState(BananaStateManager banana)
     {
-        
+        Debug.Log("Haklsdjfajfdla");  
     }
     public override void OoCollisionEnter(BananaStateManager banana)
     {
       
     }
-    public override void UpdaetState(BananaStateManager banana)
+    public override void UpdateState(BananaStateManager banana)
     {
         
     }

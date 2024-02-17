@@ -21,11 +21,15 @@ public class BananaStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentState.UpdaetState(this);
+        currentState.UpdateState(this);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        currentState.EnterState(this);
     }
 
     public void SwitchState(BananaBaseState newState){
         currentState = newState;
         currentState.EnterState(this);
-    }
+    }                                               
 }   

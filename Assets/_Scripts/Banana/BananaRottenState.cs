@@ -12,7 +12,7 @@ public class BananaRottenState : BananaBaseState
     {
       
     }
-    public override void UpdaetState(BananaStateManager banana)
+    public override void UpdateState(BananaStateManager banana)
     {
         
     }

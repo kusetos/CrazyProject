@@ -16,11 +16,12 @@ public class BananaGrowingState : BananaBaseState
     {
 
     }
-    public override void UpdaetState(BananaStateManager banana)
+    public override void UpdateState(BananaStateManager banana)
     {
-        if(banana.transform.localScale.x <= 0.5)
+        if (banana.transform.localScale.x <= 0.5)
             banana.transform.localScale += scalarScale * Time.deltaTime / 10; //speed of growing, Scalar
-            Debug.Log("growing");
+        else
+            banana.SwitchState(banana.WholeState);
         
     }
 }

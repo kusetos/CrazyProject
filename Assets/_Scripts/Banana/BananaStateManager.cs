@@ -25,7 +25,7 @@ public class BananaStateManager : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        currentState.EnterState(this);
+        currentState.OoCollisionEnter(this, collision);
     }
 
     public void SwitchState(BananaBaseState newState){

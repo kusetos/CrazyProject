@@ -12,9 +12,9 @@ public class BananaGrowingState : BananaBaseState
     {
         banana.transform.localScale = startScale;
     }
-    public override void OoCollisionEnter(BananaStateManager banana)
+    public override void OoCollisionEnter(BananaStateManager banana, Collision collision)
     {
-
+        Debug.Log("Collision with " + collision.gameObject.name);
     }
     public override void UpdateState(BananaStateManager banana)
     {

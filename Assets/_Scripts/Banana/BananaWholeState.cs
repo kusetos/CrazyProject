@@ -6,9 +6,9 @@ public class BananaWholeState : BananaBaseState
 {
     public override void EnterState(BananaStateManager banana)
     {
-        Debug.Log("Haklsdjfajfdla");  
+        banana.GetComponent<Rigidbody>().useGravity = true;  
     }
-    public override void OoCollisionEnter(BananaStateManager banana)
+    public override void OoCollisionEnter(BananaStateManager banana, Collision collision)
     {
       
     }

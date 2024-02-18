@@ -8,7 +8,7 @@ public class BananaRottenState : BananaBaseState
     {
         
     }
-    public override void OoCollisionEnter(BananaStateManager banana)
+    public override void OoCollisionEnter(BananaStateManager banana, Collision collision)
     {
       
     }

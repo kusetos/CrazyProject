@@ -7,21 +7,21 @@ namespace Assets.Infrastructure
     public class GreetingConsumer : MonoBehaviour
     {
 
+        [Inject]
        private IGreeting _greeting;
         
         private Greeting _greeting2;
 
-        [Inject]
-        public void Inject(Greeting greeting2, IGreeting greeting)
+/*        public void Inject(IGreeting greeting)
         {
-            this._greeting2 = greeting2;
+      
             this._greeting = greeting;
         }
-
+*/
         private void Update()
         {
             Debug.Log(_greeting.Message);
-            Debug.Log(_greeting2.Message);
+
         }
     }
 }

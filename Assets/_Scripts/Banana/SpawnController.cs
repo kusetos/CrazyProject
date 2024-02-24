@@ -21,7 +21,7 @@ namespace Assets._Scripts.Banana
             
             _view = view;
             Container.Bind<SpawnView>().AsSingle();
-            Container.Bind<SpawnModel>().AsSingle();
+            Container.Bind<SpawnModel>().AsSingle();      asdad
         }
 */
         private void Start()

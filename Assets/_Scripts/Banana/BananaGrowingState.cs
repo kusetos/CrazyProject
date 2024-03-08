@@ -20,7 +20,8 @@ public class BananaGrowingState : BananaBaseState
     {
         if(banana.transform.localScale.x <= 0.5)
             banana.transform.localScale += scalarScale * Time.deltaTime / 10; //speed of growing, Scalar
-            Debug.Log("growing");
+        else
+            banana.SwitchState(banana.WholeState);
         
     }
 }

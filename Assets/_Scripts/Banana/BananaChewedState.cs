@@ -8,11 +8,11 @@ public class BananaChewedState : BananaBaseState
     {
         
     }
-    public override void OoCollisionEnter(BananaStateManager banana)
+    public override void OoCollisionEnter(BananaStateManager banana, Collision collision)
     {
       
     }
-    public override void UpdaetState(BananaStateManager banana)
+    public override void UpdateState(BananaStateManager banana)
     {
         
     }

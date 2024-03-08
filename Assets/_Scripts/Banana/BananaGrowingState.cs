@@ -12,13 +12,13 @@ public class BananaGrowingState : BananaBaseState
     {
         banana.transform.localScale = startScale;
     }
-    public override void OoCollisionEnter(BananaStateManager banana)
+    public override void OoCollisionEnter(BananaStateManager banana, Collision collision)
     {
-
+        Debug.Log("Collision with " + collision.gameObject.name);
     }
-    public override void UpdaetState(BananaStateManager banana)
+    public override void UpdateState(BananaStateManager banana)
     {
-        if(banana.transform.localScale.x <= 0.5)
+        if (banana.transform.localScale.x <= 0.5)
             banana.transform.localScale += scalarScale * Time.deltaTime / 10; //speed of growing, Scalar
         else
             banana.SwitchState(banana.WholeState);

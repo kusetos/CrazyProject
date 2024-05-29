@@ -8,14 +8,14 @@ namespace Zenject.SpaceFighter
         readonly AudioPlayer _audioPlayer;
         readonly Player _player;
         readonly Settings _settings;
-        readonly Bullet.Factory _bulletFactory;
+        readonly BulletZen.Factory _bulletFactory;
         readonly PlayerInputState _inputState;
 
         float _lastFireTime;
 
         public PlayerShootHandler(
             PlayerInputState inputState,
-            Bullet.Factory bulletFactory,
+            BulletZen.Factory bulletFactory,
             Settings settings,
             Player player,
             AudioPlayer audioPlayer)

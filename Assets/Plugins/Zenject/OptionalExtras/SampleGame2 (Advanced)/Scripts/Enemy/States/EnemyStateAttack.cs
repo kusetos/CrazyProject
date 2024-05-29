@@ -14,14 +14,14 @@ namespace Zenject.SpaceFighter
         readonly PlayerFacade _player;
         readonly Settings _settings;
         readonly EnemyView _view;
-        readonly Bullet.Factory _bulletFactory;
+        readonly BulletZen.Factory _bulletFactory;
 
         float _lastShootTime;
         bool _strafeRight;
         float _lastStrafeChangeTime;
 
         public EnemyStateAttack(
-            Bullet.Factory bulletFactory,
+            BulletZen.Factory bulletFactory,
             EnemyView view,
             Settings settings,
             PlayerFacade player,

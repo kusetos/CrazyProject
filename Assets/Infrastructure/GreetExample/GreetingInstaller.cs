@@ -16,9 +16,9 @@ namespace Assets.Infrastructure.GreetExample
             //Container.Bind<Greeting>().AsSingle();
 
 
-            var bananaInstance = Container
+/*            var bananaInstance = Container
                 .InstantiatePrefabForComponent<BananaStateManager>
-                (_banan, _spawnPoint.position, _spawnPoint.rotation, null);
+                (_banan, _spawnPoint.position, _spawnPoint.rotation, null);*/
             //Container.Bind<BananaStateManager>().FromInstance(bananaInstance).AsTransient();
         }
     }

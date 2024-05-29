@@ -8,7 +8,7 @@ namespace Zenject.SpaceFighter
         FromPlayer
     }
 
-    public class Bullet : MonoBehaviour, IPoolable<float, float, BulletTypes, IMemoryPool>
+    public class BulletZen : MonoBehaviour, IPoolable<float, float, BulletTypes, IMemoryPool>
     {
         float _startTime;
         BulletTypes _type;
@@ -84,7 +84,7 @@ namespace Zenject.SpaceFighter
             _pool = null;
         }
 
-        public class Factory : PlaceholderFactory<float, float, BulletTypes, Bullet>
+        public class Factory : PlaceholderFactory<float, float, BulletTypes, BulletZen>
         {
         }
     }

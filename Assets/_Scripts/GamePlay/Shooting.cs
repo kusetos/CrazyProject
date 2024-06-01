@@ -8,6 +8,7 @@ public class Shooting : MonoBehaviour
     private Bullet _bullet;
     [SerializeField]
     private float _bulletSpeed = 10f;
+    private int _bulletCount = 0;
 
     private Vector3 _mousePos;
 
@@ -16,6 +17,8 @@ public class Shooting : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
+            _bulletCount++;
+            Debug.Log(_bullet);
         }
     }
     private void Shoot()

@@ -15,10 +15,10 @@ internal class Bullet : MonoBehaviour
 
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if(damageable != null)
-        {
+        {                                                         
             damageable.TakeDamage();
-            Destroy(this.gameObject);
-        }
+            gameObject.active = false;
+        }                                      
 
     }
 

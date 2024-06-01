@@ -9,6 +9,6 @@ public class GameplayInstaller : MonoInstaller
     public override void InstallBindings()
     {
         //Container.Bind<Shooting>().FromInstance(player).AsSingle();
-        Container.Bind<GameTimer>().AsSingle();
+        Container.BindInterfacesAndSelfTo<GameTimer>().AsSingle();
     }
 }

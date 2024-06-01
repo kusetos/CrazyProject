@@ -6,18 +6,21 @@ using Zenject;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
     private TextMeshProUGUI _timerText;
+    [SerializeField] private float _timerTime;
 
     [Inject]
     private GameTimer _gameTimer;
 
     private void Start()
     {
-        _gameTimer.StartTimer();
+        _gameTimer.StartTimer(_timerTime);
     }
     private void Update()
     {
-        _gameTimer.Tick();
-        Debug.Log($"Time: {_gameTimer.GetElapsedTime}");
+        //_gameTimer.Tick();
+        _timerText.text = _gameTimer.GetLeftSeconds();
+        
     }
 }

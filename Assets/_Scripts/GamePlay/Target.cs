@@ -7,7 +7,7 @@ namespace Assets._Scripts.GamePlay
     {
         public void TakeDamage()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

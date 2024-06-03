@@ -1,13 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-internal class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-
+    [SerializeField] private float _lifeTime;
+    private float time;
+    public Action OnReachTarget;
+    public void RemoveAction(Action onReachTargetFunction)
+    {
+        OnReachTarget += onReachTargetFunction;
+    }
     private void Update()
     {
-        if(transform.position.y < -1)
+        time += Time.deltaTime;
+        if(transform.position.y < -1 || time >= _lifeTime)
         {
-            Destroy(this.gameObject);
+            time = 0;
+            OnReachTarget();
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -15,12 +24,13 @@ internal class Bullet : MonoBehaviour
 
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if(damageable != null)
-        {                                                         
+        {
+            OnReachTarget();
             damageable.TakeDamage();
-            gameObject.active = false;
         }                                      
 
     }
+
 
 
 }

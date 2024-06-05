@@ -3,24 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Zenject;
+using Assets._Scripts.GamePlay;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI _timerText;
+
     [SerializeField] private float _timerTime;
 
-    [Inject]
-    private GameTimer _gameTimer;
+    [Inject] private GameTimer _gameTimer;
+    [Inject] private GameScore _gameScore;
 
     private void Start()
     {
         _gameTimer.StartTimer(_timerTime);
     }
-    private void Update()
-    {
-        //_gameTimer.Tick();
-        _timerText.text = _gameTimer.GetLeftSeconds();
-        
-    }
+
 }

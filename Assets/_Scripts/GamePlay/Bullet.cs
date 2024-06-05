@@ -1,8 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 public class Bullet : MonoBehaviour
 {
+    [Inject] private UIGameManager _uiManager;
     [SerializeField] private float _lifeTime;
     private float time;
     public Action OnReachTarget;
@@ -13,13 +15,13 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        if(transform.position.y < -1 || time >= _lifeTime)
+        if(transform.position.y < -10 || time >= _lifeTime)
         {
             time = 0;
             OnReachTarget();
         }
     }
-    private void OnCollisionEnter(Collision collision)
+/*    private void OnCollisionEnter(Collision collision)
     {
 
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
@@ -29,7 +31,7 @@ public class Bullet : MonoBehaviour
             damageable.TakeDamage();
         }                                      
 
-    }
+    }*/
 
 
 

@@ -35,8 +35,13 @@ public class GameTimer : ITickable
         if(GetElapsedTime < 0)
         {
             StopTimer();
-        }
-        
+            LooseBehaviour.OnLooseAction?.Invoke();
+        }    
     }
+    private void LooseCondition()
+    {
+        Debug.Log("Time exceeded");
+    }
+
 }
                                                                     

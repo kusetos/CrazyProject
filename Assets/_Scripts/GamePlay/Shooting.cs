@@ -6,40 +6,34 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [Header("BULLET")]
-    [SerializeField]
-    private Bullet _bulletPrefab;
-    [SerializeField]
-    private float _bulletSpeed = 10f;
-    [SerializeField]
-    private float _attackRate;
-    [SerializeField]
-    private int _bulletPreloadCount;
+    [SerializeField] private Bullet _bulletPrefab;
+    [SerializeField] private float _bulletSpeed = 10f; 
+    [SerializeField] private float _attackRate; 
+    [SerializeField] private int _bulletPreloadCount;
 
-    [SerializeField]
-    private GameObject _bulletContainer;
+    [SerializeField] private GameObject _bulletContainer;
 
     private int _bulletCount = 0;
     private Vector3 _mousePos;
     private PoolBase<Bullet> _bulletPool;
-    private float _nextTimeAttack;
-    private float _time;
+    private float _timer;
 
+    public float GetTimer => _timer;
     private void Awake()
     {
-        _time = _attackRate;
+        _timer = _attackRate;
         _bulletPool = new PoolBase<Bullet>(Preload, GetAction, ReturnAction, _bulletPreloadCount);
 
     }
     private void Update()
     {
-        if(_time < _attackRate) _time += Time.deltaTime;
+        if(_timer < _attackRate) _timer += Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1") && _time >= _attackRate)
+        if (Input.GetButtonDown("Fire1") && _timer >= _attackRate)
         {
             Shoot();
             _bulletCount++;
-            _time = 0;
-            Debug.Log(_bulletCount);
+            _timer = 0;
         }
     }
     private void Shoot()
@@ -49,7 +43,7 @@ public class Shooting : MonoBehaviour
 
         Bullet bullet = _bulletPool.Get();
 
-        bullet.transform.position = transform.position;
+        bullet.transform.position = transform.position;                         
         bullet.transform.rotation = Quaternion.LookRotation(_mousePos, Vector3.up);
 
         var _rigidbody = bullet.GetComponent<Rigidbody>();

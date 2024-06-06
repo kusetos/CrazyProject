@@ -44,6 +44,7 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetButtonUp("Fire1"))
         {
+            
             Shoot();
             _ammoCount--;
             _uiManager.UpdateAmmoText();

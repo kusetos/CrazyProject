@@ -5,6 +5,10 @@ using Assets._Scripts.GamePlay;
 
 namespace Assets._Scripts.GamePlay
 {
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Collider))]
+
+
     public class Target : MonoBehaviour, IDamageable
     {
         [SerializeField] private float _scoreValue = 100f;

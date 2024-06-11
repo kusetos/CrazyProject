@@ -8,11 +8,19 @@ using Assets._Scripts.GamePlay;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] private float _timerTime;
+    [SerializeField] private GameObject _gameZoneBorder;
+    [SerializeField] private GameObject _gamePlayZone;
 
+
+    [SerializeField] private float _timerTime;
     [Inject] private GameTimer _gameTimer;
     [Inject] private GameScore _gameScore;
 
+    private void Awake()
+    {
+        _gameZoneBorder.SetActive(false);
+        _gamePlayZone.SetActive(true);
+    }
     private void Start()
     {
         _gameTimer.StartTimer(_timerTime);

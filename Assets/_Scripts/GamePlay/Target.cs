@@ -20,18 +20,26 @@ namespace Assets._Scripts.GamePlay
             if (transform.position.y < -10)
             {
                 TakeDamage();
-
-                gameObject.SetActive( false );
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "ground")
+            {
+                TakeDamage();
             }
         }
 
 
         public void TakeDamage()
         {
-            //gameObject.SetActive(false);
             _gameScore.AddScore(_scoreValue);
             _uiManager.UpdateScoreUI();
             Debug.Log($"Damage \t Added Score: {_scoreValue}");
+        }
+        private IEnumerator FadeTransition()
+        {
+            yield return null;
         }
     }
 }

@@ -9,7 +9,7 @@ using Zenject;
 public class UIGameManager : MonoBehaviour
 {
 
-    [SerializeField] private TextMeshProUGUI _timerText;
+    //[SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private TextMeshProUGUI _scoreText;
     [Header("Reload")]
     [SerializeField] private Slider _reloadBar;
@@ -24,9 +24,9 @@ public class UIGameManager : MonoBehaviour
     private void Update()
     {
         //_gameTimer.Tick();
-        _timerText.text = _gameTimer.GetLeftSeconds();
+        //_timerText.text = _gameTimer.GetLeftSeconds();
         
-        _reloadBar.value = _player.GetTimer;
+        _reloadBar.value = _player.GetReloadTimer;
         if(_reloadBar.value >= 1) _reloadText.gameObject.SetActive(true);
         else _reloadText.gameObject.SetActive(false);
 

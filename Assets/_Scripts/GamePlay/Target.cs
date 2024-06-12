@@ -12,21 +12,16 @@ namespace Assets._Scripts.GamePlay
     public class Target : MonoBehaviour, IDamageable
     {
         [SerializeField] private float _scoreValue = 100f;
+        [SerializeField] private float _fadeDuration = 1;
+
         [Inject] GameScore _gameScore;
         [Inject] UIGameManager _uiManager;
 
-        private void Update()
-        {
-            if (transform.position.y < -10)
-            {
-                TakeDamage();
-            }
-        }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "ground")
+            if (other.gameObject.tag == "Ground")
             {
-                TakeDamage();
+                StartCoroutine(FadeTransition());
             }
         }
 
@@ -35,11 +30,24 @@ namespace Assets._Scripts.GamePlay
         {
             _gameScore.AddScore(_scoreValue);
             _uiManager.UpdateScoreUI();
+            this.gameObject.SetActive(false);
             Debug.Log($"Damage \t Added Score: {_scoreValue}");
         }
         private IEnumerator FadeTransition()
         {
-            yield return null;
+            Vector3 startScale = transform.localScale;
+            float elapsedTime = 0f;
+
+            yield return new WaitForSeconds(1);
+            while (transform.localScale.x >= 0.01)
+            {
+                elapsedTime += Time.deltaTime;
+                transform.localScale = Vector3.Lerp(startScale, Vector3.zero, elapsedTime / _fadeDuration);
+                yield return null;
+            }
+            TakeDamage();
+
+
         }
     }
 }

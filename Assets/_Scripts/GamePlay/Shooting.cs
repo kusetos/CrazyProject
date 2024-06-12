@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
-public class Shooting : MonoBehaviour, IDragHandler 
+public class Shooting : MonoBehaviour, IPointerClickHandler
 {
     [Header("BULLET")]
     [SerializeField] private Bullet _bulletPrefab;
@@ -46,25 +46,22 @@ public class Shooting : MonoBehaviour, IDragHandler
 
         if (!AbleToShoot) return;
         
-        if (_ammoCount <= 0) return;
         if (Input.GetButton("Fire1"))
         {
+            _bulletOrigin.GetComponent<MeshRenderer>().enabled = true;
+
             _mousePos = Input.mousePosition;
             _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(_mousePos.x, _mousePos.y, Camera.main.farClipPlane));
             
             _trajectory.UpdateTrajectory((_mousePos - _bulletOrigin.transform.position) * _bulletSpeed, _bulletPrefab.GetComponent<Rigidbody>(), _bulletOrigin.transform.position);
         }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            _trajectory.HideLine();
-        }
-
 
 
         if (Input.GetButtonUp("Fire1"))
         {
             
             Shoot();
+            _trajectory.HideLine();
             _ammoCount--;
             _uiManager.UpdateAmmoText();
             _timer = 0;
@@ -73,6 +70,7 @@ public class Shooting : MonoBehaviour, IDragHandler
     }
     private void Shoot()
     {
+        _bulletOrigin.GetComponent<MeshRenderer>().enabled = false;
         _mousePos = Input.mousePosition;
         _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(_mousePos.x, _mousePos.y, Camera.main.farClipPlane));
 
@@ -96,14 +94,8 @@ public class Shooting : MonoBehaviour, IDragHandler
     public void GetAction(Bullet bullet) => bullet.gameObject.SetActive(true);
     public void ReturnAction(Bullet bullet) => bullet.gameObject.SetActive(false);
 
-    private void OnDrag(PointerEventData data)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("DRAG");
-        
-    }
-
-    void IDragHandler.OnDrag(PointerEventData eventData)
-    {
-        throw new NotImplementedException();
+        Debug.Log($"Click {eventData}");
     }
 }

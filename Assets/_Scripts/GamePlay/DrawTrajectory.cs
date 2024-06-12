@@ -38,7 +38,7 @@ public class DrawTrajectory : MonoBehaviour
                 (velocity.y * stepTimePassed) - 0.5f * Physics.gravity.y * stepTimePassed * stepTimePassed,
                 velocity.z * stepTimePassed
                 );
-            Debug.Log(MovementVector);
+
             _linePoints.Add(-MovementVector + startingPoint);
 
         }

@@ -15,9 +15,7 @@ public class ChangePositionInput : MonoBehaviour
     private int _index;
     private InputSystem _input;
     private bool _isMoving;
-    /*
-        private void RotateRight() => player.transform.eulerAngles -= new Vector3(0, _degreeStep, 0);
-        private void RotateLeft() => player.transform.eulerAngles += new Vector3(0, _degreeStep, 0);*/
+
 
     private void Awake()
     {
@@ -40,25 +38,15 @@ public class ChangePositionInput : MonoBehaviour
     }
     private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        TurnRight();
-    }
-
-    private void MoveLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        TurnLeft();
-    }
-
-    public void TurnRight()
-    {
         if (_isMoving) return;
 
-        if (_index == positions.Count-1) _index =  0;
+        if (_index == positions.Count - 1) _index = 0;
         else _index++;
 
         StartCoroutine(CameraTransition());
-
     }
-    public void TurnLeft()
+
+    private void MoveLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (_isMoving) return;
 
@@ -67,6 +55,7 @@ public class ChangePositionInput : MonoBehaviour
 
         StartCoroutine(CameraTransition());
     }
+
     private IEnumerator CameraTransition()
     {
         player.AbleToShoot = false;
@@ -89,8 +78,5 @@ public class ChangePositionInput : MonoBehaviour
         Debug.Log("Transition END");
         _isMoving = false;
         player.AbleToShoot = true;
-
     }
-
-
 }

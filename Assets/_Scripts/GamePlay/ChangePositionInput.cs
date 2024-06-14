@@ -39,9 +39,7 @@ public class ChangePositionInput : MonoBehaviour
     private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (_isMoving) return;
-
-        if (_index == positions.Count - 1) _index = 0;
-        else _index++;
+        else _index = ++_index % positions.Count;
 
         StartCoroutine(CameraTransition());
     }
@@ -49,9 +47,7 @@ public class ChangePositionInput : MonoBehaviour
     private void MoveLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (_isMoving) return;
-
-        if (_index <= 0) _index = positions.Count - 1;
-        else _index--;
+        else  _index = --_index % positions.Count;
 
         StartCoroutine(CameraTransition());
     }

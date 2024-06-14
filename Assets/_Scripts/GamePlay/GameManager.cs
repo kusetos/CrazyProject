@@ -1,15 +1,18 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Zenject;
 using Assets._Scripts.GamePlay;
 
+
 public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject _gameZoneBorder;
     [SerializeField] private GameObject _gamePlayZone;
+    [SerializeField] private AllLevelData _allLevelData;
 
 
     [SerializeField] private float _timerTime;
@@ -25,5 +28,6 @@ public class GameManager : MonoBehaviour
     {
         _gameTimer.StartTimer(_timerTime);
     }
+
 
 }

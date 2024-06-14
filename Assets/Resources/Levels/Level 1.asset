@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb901ce661b47547a7a23900c086deb, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  LevelId: 1
+  Prefabs:
+  - Object: {fileID: 0}
+    Position: {x: -52.042, y: 1, z: 49.175}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - Object: {fileID: 0}
+    Position: {x: -52.042, y: 1, z: 50.425}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - Object: {fileID: 0}
+    Position: {x: -52.042, y: 1, z: 51.425}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - Object: {fileID: 0}
+    Position: {x: -52.042, y: 1, z: 47.925}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - Object: {fileID: 0}
+    Position: {x: -50.81, y: 1, z: 49.14}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - Object: {fileID: 0}
+    Position: {x: -49.53, y: 1, z: 49.1}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - Object: {fileID: 0}
+    Position: {x: -48.257, y: 1, z: 49.111}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}

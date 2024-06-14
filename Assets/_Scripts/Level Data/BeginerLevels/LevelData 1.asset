@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bac35e7cde98ce4b9a73e11c009c863, type: 3}
+  m_Name: LevelData 1
+  m_EditorClassIdentifier: 
+  _targetCount: 3
+  _levelId: 0
+  _prefabs:
+  - _prefab: {fileID: 5515558313126771512, guid: 82bc8b5d9f2092148a1a59d34db7dfeb, type: 3}
+    _positions:
+    - _position: {x: -0.796, y: 1.989, z: -0.85699844}
+    - _position: {x: -2.07, y: 1.989, z: -0.883}
+    - _position: {x: -1.965997, y: 1.989, z: 0.35800147}
+    - _position: {x: 1.7880001, y: 1.989, z: -0.905}
+    - _position: {x: -2.0149949, y: 1.989, z: 1.4040012}
+    - _position: {x: -1.995, y: 1.989, z: -2.076}
+  - _prefab: {fileID: 8054876241468241585, guid: 8ef56cad13429064f957856adecf2db4, type: 3}
+    _positions:
+    - _position: {x: -2.044, y: 1, z: 0.409}
+    - _position: {x: 1.759998, y: 1, z: -0.88000107}
+    - _position: {x: -2.043, y: 1, z: 1.429}
+    - _position: {x: -2.0230007, y: 1, z: -2.051001}
+    - _position: {x: -2.0483475, y: 1, z: -0.87387085}

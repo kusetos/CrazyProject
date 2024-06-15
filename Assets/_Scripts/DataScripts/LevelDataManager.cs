@@ -6,28 +6,32 @@ using UnityEngine;
 
 public class LevelDataManager : MonoBehaviour
 {
-    [SerializeField] private int _levelIndex;
+    [Header("Bullet Container")]
+    [SerializeField] private Transform _levelContainer;
+    [Header("Level Editor Preference")]
+    [SerializeField] private string _levelPath;
     [SerializeField] private List<SaveLevelPrefab> _savePrefabs;
+
+    private int _targetCount;
     public void SaveLevel()
     {
         var newLevel = ScriptableObject.CreateInstance<ScriptableLevel>();
-        newLevel.LevelId = _levelIndex;
-        newLevel.name = $"Level {_levelIndex}";
+        newLevel.LevelId = _levelPath;
+        newLevel.name = $"{_levelPath}";
 
-        LevelObject[] levelObjects = FindObjectsOfType<LevelObject>();
-        foreach( LevelObject levelObject in levelObjects)
+        GameLevelObject[] levelObjects = FindObjectsOfType<GameLevelObject>();
+        foreach(GameLevelObject levelObject in levelObjects)
         {
 
             newLevel.Prefabs.Add(
         new SavedObject
-        {
-            Object = levelObject,
-            Position = levelObject.transform.position,
-            Rotation = levelObject.transform.rotation,
-            Scale = levelObject.transform.localScale
-            });
-                Debug.Log($"{levelObject.transform.position}");
-        }
+            {
+                ObjectType = levelObject.ObjectType,
+                Position = levelObject.transform.position,
+                Rotation = levelObject.transform.rotation,
+                Scale = levelObject.transform.localScale
+                });
+            }
     
         ScriptableObjectUtility.SaveLevelFile(newLevel);
 
@@ -35,8 +39,8 @@ public class LevelDataManager : MonoBehaviour
     }
     public void ClearLevel()
     {
-        LevelObject[] levelObjects = FindObjectsOfType<LevelObject>();
-        foreach (LevelObject levelObject in levelObjects)
+        GameLevelObject[] levelObjects = FindObjectsOfType<GameLevelObject>();
+        foreach (GameLevelObject levelObject in levelObjects)
         {
             if (levelObject == null) continue;
 
@@ -48,20 +52,26 @@ public class LevelDataManager : MonoBehaviour
     }
     public void LoadLevel()
     {
-        var level = Resources.Load<ScriptableLevel>($"Levels/Level {_levelIndex}");
+        ScriptableLevel level = Resources.Load<ScriptableLevel>($"Levels/{_levelPath}");
         if (level == null) 
         {
-            Debug.LogError($"Levels/Level {_levelIndex} does not exist"); 
+            Debug.LogError($"Levels/{_levelPath} does not exist"); 
             return; 
         }
         ClearLevel();
 
         GameObject prefab = null;
+        _targetCount = 0;
         foreach(var levelObject in level.Prefabs)
         {
             foreach (var savePrefabs in _savePrefabs)
             {
-                if (levelObject.Object.ObjectType == savePrefabs.ObjectType)
+
+                if(levelObject.ObjectType == LevelObjectType.TARGET)
+                {
+                    _targetCount++;
+                }
+                if (levelObject.ObjectType == savePrefabs.ObjectType)
                 {
                     prefab = savePrefabs.Prefab;
                     break;
@@ -70,22 +80,24 @@ public class LevelDataManager : MonoBehaviour
             }
             if(prefab == null)
             {
-                Debug.LogError($"Prefab couldnt found! {levelObject.Object.ObjectType}");
+                Debug.LogError($"Prefab couldnt found! {levelObject.ObjectType}");
                 continue;
             }
-            GameObject gameObject = Instantiate(prefab);
+            GameObject gameObject = Instantiate(prefab, _levelContainer);
             gameObject.transform.position = levelObject.Position;
             gameObject.transform.rotation = levelObject.Rotation;
             gameObject.transform.localScale = levelObject.Scale;
         }
 
+        Debug.Log($"Target count: {_targetCount}");
     }
 }
+
 [System.Serializable]
-public class SaveLevelPrefab
+public struct SaveLevelPrefab
 {
-    public LevelObjectType ObjectType;
-    public GameObject Prefab;
+    [SerializeField] public LevelObjectType ObjectType ;
+    [SerializeField] public GameObject Prefab;
 }
 
 #if UNITY_EDITOR

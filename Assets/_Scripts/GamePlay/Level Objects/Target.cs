@@ -9,7 +9,7 @@ namespace Assets._Scripts.GamePlay
     [RequireComponent(typeof(Collider))]
 
 
-    public class Target : MonoBehaviour, IDamageable
+    public class Target : GameLevelObject, IDamageable
     {
         [SerializeField] private float _scoreValue = 100f;
         [SerializeField] private float _fadeDuration = 1;

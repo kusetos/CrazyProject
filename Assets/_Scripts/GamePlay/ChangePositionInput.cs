@@ -12,7 +12,7 @@ public class ChangePositionInput : MonoBehaviour
     [SerializeField] private List<Transform> positions;
     [SerializeField] private float _durationOfTransition;
 
-    private int _index;
+    private uint _index;
     private InputSystem _input;
     private bool _isMoving;
 
@@ -39,7 +39,7 @@ public class ChangePositionInput : MonoBehaviour
     private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (_isMoving) return;
-        else _index = ++_index % positions.Count;
+        else _index = (uint)(++_index % positions.Count);
 
         StartCoroutine(CameraTransition());
     }
@@ -47,7 +47,7 @@ public class ChangePositionInput : MonoBehaviour
     private void MoveLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (_isMoving) return;
-        else  _index = --_index % positions.Count;
+        else  _index = (uint)(--_index % positions.Count);
 
         StartCoroutine(CameraTransition());
     }
@@ -66,8 +66,8 @@ public class ChangePositionInput : MonoBehaviour
         {
 
             elapsedTime += Time.deltaTime;
-            player.transform.rotation = Quaternion.Lerp(startRotation, positions[_index].rotation, elapsedTime / _durationOfTransition);
-            player.transform.position = Vector3.Lerp(startPosition, positions[_index].position, elapsedTime / _durationOfTransition);
+            player.transform.rotation = Quaternion.Lerp(startRotation, positions[(int)_index].rotation, elapsedTime / _durationOfTransition);
+            player.transform.position = Vector3.Lerp(startPosition, positions[(int)_index].position, elapsedTime / _durationOfTransition);
             
             yield return null;
         }

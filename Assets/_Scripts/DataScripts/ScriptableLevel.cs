@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 //[CreateAssetMenu(fileName = "LevelData", menuName = "Level Data", order = 51)]
 public class ScriptableLevel : ScriptableObject
 {
-    [SerializeField] public int LevelId;
+    [SerializeField] public string LevelId;
     [SerializeField] public List<SavedObject> Prefabs = new();
 }
 
@@ -15,7 +15,8 @@ public class ScriptableLevel : ScriptableObject
 [System.Serializable] 
 public class SavedObject
 { 
-    [SerializeField] public  LevelObject Object;
+    [SerializeField] public LevelObjectType ObjectType;
+    [Header("Transform")]
     [SerializeField] public Vector3 Position;
     [SerializeField] public Quaternion Rotation;
     [SerializeField] public Vector3 Scale;

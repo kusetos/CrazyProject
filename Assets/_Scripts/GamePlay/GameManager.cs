@@ -7,26 +7,34 @@ using Zenject;
 using Assets._Scripts.GamePlay;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IInitializable
 {
 
+    [Header("Game Zones")]
     [SerializeField] private GameObject _gameZoneBorder;
     [SerializeField] private GameObject _gamePlayZone;
-    [SerializeField] private AllLevelData _allLevelData;
-
-
-    [SerializeField] private float _timerTime;
+    [Header("Level Setup")]
+    [SerializeField] private string _levelPath;
+    [Inject] private LevelDataManager _levelDataManager;
+    
     [Inject] private GameTimer _gameTimer;
-    [Inject] private GameScore _gameScore;
+    
+
+    public void Initialize()
+    {
+    }
 
     private void Awake()
     {
         _gameZoneBorder.SetActive(false);
         _gamePlayZone.SetActive(true);
+
+        _levelDataManager.LevelPath = _levelPath;
+        _levelDataManager.LoadLevel();
     }
     private void Start()
     {
-        _gameTimer.StartTimer(_timerTime);
+        _gameTimer.StartTimer();
     }
 
 

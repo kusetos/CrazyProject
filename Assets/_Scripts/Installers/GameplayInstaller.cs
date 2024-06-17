@@ -12,12 +12,16 @@ public class GameplayInstaller : MonoInstaller
         //Bind Player
         Container.Bind<Shooting>().FromInstance(player).AsSingle();
 
-        // TIMER and SCORE in game
+        //Score
+        Container.BindInterfacesAndSelfTo<GameScore>().AsSingle();
+
+        // TIMER in game
         Container.BindInterfacesAndSelfTo<GameTimer>().AsSingle();
-        Container.Bind<GameScore>().AsSingle();
 
         //Managers
+        Container.Bind<LevelDataManager>().FromComponentInHierarchy().AsSingle();
         Container.Bind<UIGameManager>().FromComponentInHierarchy().AsSingle();
         Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
+
     }
 }

@@ -4,15 +4,15 @@ using Zenject;
 
 namespace Assets._Scripts.GamePlay
 {
-    public class GameScore
+    public class GameScore : IInitializable
     {
         private float _currentScore;
         public float GetCurrentScore => _currentScore;
-        public GameScore()
+        public void Initialize()
         {
             _currentScore = 0f;
-
         }
+
         public void AddScore(float score)
         {
             _currentScore += score;

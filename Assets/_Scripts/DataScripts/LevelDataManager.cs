@@ -12,7 +12,10 @@ public class LevelDataManager : MonoBehaviour
     [SerializeField] private string _levelPath;
     [SerializeField] private List<SaveLevelPrefab> _savePrefabs;
 
+    public string LevelPath { get => _levelPath; set { _levelPath = value; } }
+
     private int _targetCount;
+    public int GetTargetCount => _targetCount;
     public void SaveLevel()
     {
         var newLevel = ScriptableObject.CreateInstance<ScriptableLevel>();
@@ -26,7 +29,7 @@ public class LevelDataManager : MonoBehaviour
             newLevel.Prefabs.Add(
         new SavedObject
             {
-                ObjectType = levelObject.ObjectType,
+                ObjectType = levelObject.GetObjectType,
                 Position = levelObject.transform.position,
                 Rotation = levelObject.transform.rotation,
                 Scale = levelObject.transform.localScale
@@ -64,13 +67,11 @@ public class LevelDataManager : MonoBehaviour
         _targetCount = 0;
         foreach(var levelObject in level.Prefabs)
         {
+            if(levelObject.ObjectType == LevelObjectType.TARGET) _targetCount++;
+            
             foreach (var savePrefabs in _savePrefabs)
             {
 
-                if(levelObject.ObjectType == LevelObjectType.TARGET)
-                {
-                    _targetCount++;
-                }
                 if (levelObject.ObjectType == savePrefabs.ObjectType)
                 {
                     prefab = savePrefabs.Prefab;

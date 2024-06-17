@@ -10,17 +10,17 @@ public class GameTimer : ITickable
     private float _elapsedTime;
     private bool _isRunning = false;
 
-    public void StartTimer(float time)
+    public void StartTimer()
     {
         _isRunning = true;
-        _elapsedTime = time;
+        _elapsedTime = 0;
     }
     public void StopTimer()
     {
         _isRunning=false;
     }
     public float GetElapsedTime => _elapsedTime;
-    public string GetLeftSeconds()
+    public string GetCurrentTime()
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(GetElapsedTime);
 
@@ -30,18 +30,11 @@ public class GameTimer : ITickable
     {
         if( _isRunning )
         {
-            _elapsedTime -= Time.deltaTime;
+            _elapsedTime += Time.deltaTime;
         }
-        if(GetElapsedTime < 0)
-        {
-            StopTimer();
-            LooseBehaviour.OnLooseAction?.Invoke();
-        }    
+    
     }
-    private void LooseCondition()
-    {
-        Debug.Log("Time exceeded");
-    }
+
 
 }
                                                                     

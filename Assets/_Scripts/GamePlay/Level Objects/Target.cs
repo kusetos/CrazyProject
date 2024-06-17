@@ -14,31 +14,34 @@ namespace Assets._Scripts.GamePlay
         [SerializeField] private float _scoreValue = 100f;
         [SerializeField] private float _fadeDuration = 1;
 
-        [Inject] GameScore _gameScore;
-        [Inject] UIGameManager _uiManager;
 
+        UIGameManager _uiManager;
+
+        private void Awake()
+        {
+            _uiManager = FindObjectOfType<UIGameManager>();
+        }
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Ground")
             {
                 StartCoroutine(FadeTransition());
+
             }
         }
 
 
         public void TakeDamage()
         {
-            _gameScore.AddScore(_scoreValue);
-            _uiManager.UpdateScoreUI();
+            _uiManager.UpdateScoreUI(_scoreValue);
             this.gameObject.SetActive(false);
-            Debug.Log($"Damage \t Added Score: {_scoreValue}");
         }
         private IEnumerator FadeTransition()
         {
             Vector3 startScale = transform.localScale;
             float elapsedTime = 0f;
 
-            yield return new WaitForSeconds(1);
+            //yield return new WaitForSeconds(1);
             while (transform.localScale.x >= 0.01)
             {
                 elapsedTime += Time.deltaTime;
@@ -46,7 +49,7 @@ namespace Assets._Scripts.GamePlay
                 yield return null;
             }
             TakeDamage();
-
+            Debug.Log("Start damage");
 
         }
     }

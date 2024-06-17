@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-//[CreateAssetMenu(fileName = "LevelData", menuName = "Level Data", order = 51)]
+
 public class ScriptableLevel : ScriptableObject
 {
     [SerializeField] public string LevelId;

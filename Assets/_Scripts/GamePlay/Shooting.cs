@@ -21,28 +21,37 @@ public class Shooting : MonoBehaviour, IPointerClickHandler
 
     DrawTrajectory _trajectory;
 
-    //private int _bulletCount = 0;
-    [Inject] private UIGameManager _uiManager;
-
     private Vector3 _mousePos;
     private PoolBase<Bullet> _bulletPool;
-    private float _timer;
-    private bool _reloaded => _timer > _attackRate;
+    private float _reloadTimer;
+    private bool _reloaded => _reloadTimer > _attackRate;
     public bool AbleToShoot {  get; set; }
 
-    public float GetReloadTimer => _timer;
+    public float GetReloadTimer => _reloadTimer;
     public int GetAmmoCount => _ammoCount;
+
+    public static Action OnShootAction;
+
+    private void OnEnable()
+    {
+        OnShootAction += Shoot;     
+    }
+    private void OnDisable()
+    {
+        OnShootAction -= Shoot;     
+        
+    }
     private void Awake()
     {
         AbleToShoot = true;
-        _timer = _attackRate;
+        _reloadTimer = _attackRate;
         _bulletPreloadCount = _ammoCount / 2;
         _bulletPool = new PoolBase<Bullet>(Preload, GetAction, ReturnAction, _bulletPreloadCount);
         _trajectory = GetComponent<DrawTrajectory>();
     }
     private void Update()
     {
-        if (!_reloaded) _timer += Time.deltaTime;
+        if (!_reloaded) _reloadTimer += Time.deltaTime;
 
         if (!AbleToShoot) return;
         
@@ -59,12 +68,17 @@ public class Shooting : MonoBehaviour, IPointerClickHandler
 
         if (Input.GetButtonUp("Fire1"))
         {
-            
-            Shoot();
-            _trajectory.HideLine();
-            _ammoCount--;
-            _uiManager.UpdateAmmoText();
-            _timer = 0;
+            if (_ammoCount > 0)
+            {
+                _ammoCount--;
+                OnShootAction?.Invoke();
+                _trajectory.HideLine();
+                _reloadTimer = 0;
+            }
+            else
+            {
+                Debug.Log("LOSE");
+            }
         }
 
     }
@@ -86,9 +100,6 @@ public class Shooting : MonoBehaviour, IPointerClickHandler
         void OnReachTarget() => _bulletPool.Return(bullet);
         bullet.RemoveAction(OnReachTarget);
     }
-
-
-
 
     public Bullet Preload() => Instantiate(_bulletPrefab, _bulletContainer.transform);
     public void GetAction(Bullet bullet) => bullet.gameObject.SetActive(true);

@@ -7,9 +7,9 @@ using Zenject;
 public class ChangePositionInput : MonoBehaviour
 {
 
-    [Inject] private Shooting player;
+    [Inject] private Shooting _player;
 
-    [SerializeField] private List<Transform> positions;
+    [SerializeField] private List<Transform> _positions;
     [SerializeField] private float _durationOfTransition;
 
     private uint _index;
@@ -23,6 +23,7 @@ public class ChangePositionInput : MonoBehaviour
         _input.Enable();
         _isMoving = false;
         _index = 0;
+        _player.transform.position = _positions[0].position;
     }
     private void OnEnable()
     {
@@ -39,7 +40,7 @@ public class ChangePositionInput : MonoBehaviour
     private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (_isMoving) return;
-        else _index = (uint)(++_index % positions.Count);
+        else _index = (uint)(++_index % _positions.Count);
 
         StartCoroutine(CameraTransition());
     }
@@ -47,18 +48,18 @@ public class ChangePositionInput : MonoBehaviour
     private void MoveLeft_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (_isMoving) return;
-        else  _index = (uint)(--_index % positions.Count);
+        else  _index = (uint)(--_index % _positions.Count);
 
         StartCoroutine(CameraTransition());
     }
 
     private IEnumerator CameraTransition()
     {
-        player.AbleToShoot = false;
+        _player.AbleToShoot = false;
         _isMoving = true;
 
-        Vector3 startPosition = player.transform.position;
-        Quaternion startRotation = player.transform.rotation;
+        Vector3 startPosition = _player.transform.position;
+        Quaternion startRotation = _player.transform.rotation;
 
         float elapsedTime = 0f;
 
@@ -66,13 +67,13 @@ public class ChangePositionInput : MonoBehaviour
         {
 
             elapsedTime += Time.deltaTime;
-            player.transform.rotation = Quaternion.Lerp(startRotation, positions[(int)_index].rotation, elapsedTime / _durationOfTransition);
-            player.transform.position = Vector3.Lerp(startPosition, positions[(int)_index].position, elapsedTime / _durationOfTransition);
+            _player.transform.rotation = Quaternion.Lerp(startRotation, _positions[(int)_index].rotation, elapsedTime / _durationOfTransition);
+            _player.transform.position = Vector3.Lerp(startPosition, _positions[(int)_index].position, elapsedTime / _durationOfTransition);
             
             yield return null;
         }
         Debug.Log("Transition END");
         _isMoving = false;
-        player.AbleToShoot = true;
+        _player.AbleToShoot = true;
     }
 }

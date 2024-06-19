@@ -33,10 +33,21 @@ public class UIGameManager : MonoBehaviour
         else _reloadText.gameObject.SetActive(false);
 
     }
-    private void Start()
+    private void OnEnable()
     {
+
+        Target.OnTargetDamage += UpdateScoreUI;
+        Shooting.OnShootAction += UpdateAmmoText;
         UpdateAmmoText();
+
     }
+    private void OnDisable()
+    {
+        Target.OnTargetDamage -= UpdateScoreUI;
+        Shooting.OnShootAction -= UpdateAmmoText;
+
+    }
+
     public void UpdateScoreUI(float scoreValue)
     {
         _gameScore.AddScore(scoreValue);

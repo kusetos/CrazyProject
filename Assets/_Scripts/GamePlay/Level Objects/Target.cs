@@ -42,7 +42,6 @@ namespace Assets._Scripts.GamePlay
                 yield return null;
             }
             TakeDamage();
-            Debug.Log("Start damage");
 
         }
     }

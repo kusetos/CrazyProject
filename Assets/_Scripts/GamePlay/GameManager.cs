@@ -48,13 +48,11 @@ public class GameManager : MonoBehaviour
     }
     private void DecreaseTargetCount(float n)
     {
-        if(_targetCount <= 0)
-        {
-            Debug.Log("WIN");
-        }
         --_targetCount;
         Debug.Log($"Target count {_targetCount}");
-    } 
 
+        if (_targetCount <= 0)
+            Debug.Log("WIN");
 
+    }
 }

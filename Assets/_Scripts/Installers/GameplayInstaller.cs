@@ -9,6 +9,7 @@ public class GameplayInstaller : MonoInstaller
     [SerializeField] private Shooting player;
     public override void InstallBindings()
     {
+
         //Bind Player
         Container.Bind<Shooting>().FromInstance(player).AsSingle();
 
@@ -20,6 +21,7 @@ public class GameplayInstaller : MonoInstaller
 
         //Managers
         Container.Bind<LevelDataManager>().FromComponentInHierarchy().AsSingle();
+
         Container.Bind<UIGameManager>().FromComponentInHierarchy().AsSingle();
         Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
 

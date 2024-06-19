@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-public class GameTimer : ITickable
+public class GameTimer : ITickable, IInitializable
 {
     private float _elapsedTime;
     private bool _isRunning = false;
@@ -35,6 +35,9 @@ public class GameTimer : ITickable
     
     }
 
-
+    public void Initialize()
+    {
+        //throw new NotImplementedException();
+    }
 }
                                                                     

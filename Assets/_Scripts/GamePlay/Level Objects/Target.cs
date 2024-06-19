@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System;
 using Zenject;
 using Assets._Scripts.GamePlay;
 
@@ -14,34 +15,26 @@ namespace Assets._Scripts.GamePlay
         [SerializeField] private float _scoreValue = 100f;
         [SerializeField] private float _fadeDuration = 1;
 
+        public static Action<float> OnTargetDamage;
 
-        UIGameManager _uiManager;
-
-        private void Awake()
-        {
-            _uiManager = FindObjectOfType<UIGameManager>();
-        }
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Ground")
-            {
                 StartCoroutine(FadeTransition());
 
-            }
         }
-
 
         public void TakeDamage()
         {
-            _uiManager.UpdateScoreUI(_scoreValue);
+            OnTargetDamage?.Invoke(_scoreValue);
             this.gameObject.SetActive(false);
         }
+
         private IEnumerator FadeTransition()
         {
             Vector3 startScale = transform.localScale;
             float elapsedTime = 0f;
 
-            //yield return new WaitForSeconds(1);
             while (transform.localScale.x >= 0.01)
             {
                 elapsedTime += Time.deltaTime;

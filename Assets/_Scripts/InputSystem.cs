@@ -31,7 +31,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Shoot"",
                     ""type"": ""Value"",
                     ""id"": ""0e094e6f-3a59-482e-9ad2-3f9a11f2b3ef"",
-                    ""expectedControlType"": ""Touch"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -59,7 +59,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7361e02c-e46e-4f37-92a8-ad96c29507d5"",
-                    ""path"": """",
+                    ""path"": ""<Touchscreen>/touch0"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -69,34 +69,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0f819a96-d1c9-43db-815b-42d93d02f344"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3308e58b-5f6d-4c63-8415-c9de25b7fd47"",
                     ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MoveLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""224d7349-5bf5-4d90-af5b-79e5742b8372"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -104,7 +82,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""f9d05f0f-6ec5-420a-8159-dddfa29b77a3"",
                     ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MoveRight"",

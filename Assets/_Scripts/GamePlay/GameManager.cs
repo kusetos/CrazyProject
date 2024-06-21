@@ -32,13 +32,13 @@ public class GameManager : MonoBehaviour
     {
         Target.OnTargetDamage += DecreaseTargetCount;
         OnGameWin += EnableWinPanel;
-        OnGameLose += OnGameLose;
+        OnGameLose += EnableLosePanel;
     }
     private void OnDisable()
     {
         Target.OnTargetDamage -= DecreaseTargetCount;
         OnGameWin -= EnableWinPanel;
-        OnGameLose -= OnGameLose; 
+        OnGameLose -= EnableLosePanel; 
     }
 
     private void Awake()

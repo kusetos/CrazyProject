@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Zenject;
 
 public class ChangePositionInput : MonoBehaviour
@@ -16,26 +17,34 @@ public class ChangePositionInput : MonoBehaviour
     private InputSystem _input;
     private bool _isMoving;
 
+    private InputAction _rightButton;
+    private InputAction _leftButton;
+
 
     private void Awake()
     {
         _input = new InputSystem();
-        _input.Enable();
+        _rightButton = _input.FindAction("MoveRight");
+        _leftButton = _input.FindAction("MoveLeft");
+
         _isMoving = false;
         _index = 0;
         _player.transform.position = _positions[0].position;
     }
     private void OnEnable()
     {
-        _input.Game.MoveLeft.performed += MoveLeft_performed;
-        _input.Game.MoveRight.performed += MoveRight_performed;
+        _input.Enable();
+        _leftButton.performed += MoveLeft_performed;
+        //_rightButton.performed += MoveRight_performed;
+        _rightButton.performed += ctx => MoveRight_performed(ctx);
     }
 
 
     private void OnDisable ()
     {
-        _input.Game.MoveRight.performed -= MoveRight_performed;
-        _input.Game.MoveLeft.performed -= MoveLeft_performed;
+        _input.Disable();
+        _leftButton.performed -= MoveLeft_performed;
+        //_rightButton.performed -= MoveRight_performed();
     }
     private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {

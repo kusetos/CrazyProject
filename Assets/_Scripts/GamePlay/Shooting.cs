@@ -77,7 +77,7 @@ public class Shooting : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                Debug.Log("LOSE");
+                GameManager.OnGameLose?.Invoke();
             }
         }
 

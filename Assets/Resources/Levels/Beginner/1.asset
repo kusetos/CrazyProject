@@ -14,6 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelId: Beginner/1
   Prefabs:
+  - ObjectType: 1
+    Position: {x: -50, y: 1, z: 50}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - ObjectType: 0
+    Position: {x: -50, y: 2, z: 50}
+    Rotation: {x: -0.49707112, y: 0.50291187, z: 0.50291187, w: 0.49707112}
+    Scale: {x: 0.5, y: 0.5, z: 0.5}
+  - ObjectType: 2
+    Position: {x: -50, y: 5, z: 50}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 0.1, z: 1}
+  - ObjectType: 0
+    Position: {x: -50, y: 7.07, z: 50}
+    Rotation: {x: -0.49707112, y: 0.50291187, z: 0.50291187, w: 0.49707112}
+    Scale: {x: 0.5, y: 0.5, z: 0.5}
   - ObjectType: 0
     Position: {x: -50, y: 2, z: 51}
     Rotation: {x: 0.36546877, y: 0.6053368, z: 0.6053368, w: -0.36546877}
@@ -22,23 +38,19 @@ MonoBehaviour:
     Position: {x: -50, y: 2, z: 49}
     Rotation: {x: 0.07415142, y: 0.7032081, z: 0.7032081, w: -0.07415142}
     Scale: {x: 0.5, y: 0.5, z: 0.5}
-  - ObjectType: 0
-    Position: {x: -50, y: 2, z: 50}
-    Rotation: {x: -0.49707112, y: 0.50291187, z: 0.50291187, w: 0.49707112}
-    Scale: {x: 0.5, y: 0.5, z: 0.5}
+  - ObjectType: 1
+    Position: {x: -50, y: 1, z: 49}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
   - ObjectType: 1
     Position: {x: -2.0439987, y: 1, z: 0.4090004}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
     Scale: {x: 0.33333334, y: 2, z: 0.33333334}
   - ObjectType: 1
+    Position: {x: -50, y: 6.05, z: 50}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
+  - ObjectType: 1
     Position: {x: -50, y: 1, z: 51}
-    Rotation: {x: -0, y: -0, z: -0, w: 1}
-    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
-  - ObjectType: 1
-    Position: {x: -50, y: 1, z: 50}
-    Rotation: {x: -0, y: -0, z: -0, w: 1}
-    Scale: {x: 0.33333334, y: 2, z: 0.33333334}
-  - ObjectType: 1
-    Position: {x: -50, y: 1, z: 49}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
     Scale: {x: 0.33333334, y: 2, z: 0.33333334}

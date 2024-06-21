@@ -6,5 +6,8 @@ using UnityEngine;
 public enum LevelObjectType
 {
     TARGET = 0,
-    SIMPLE_BLOCK = 1
+    RB_BLOCK = 1,
+    STATIC_BLOCK = 2,
+    MOVING_PLATFORM = 3,
+    
 }

@@ -13,23 +13,32 @@ public class GameManager : MonoBehaviour
     [Header("Game Zones")]
     [SerializeField] private GameObject _gameZoneBorder;
     [SerializeField] private GameObject _gamePlayZone;
+
     [Header("Level Setup")]
     [SerializeField] private string _levelPath;
     [Inject] private LevelDataManager _levelDataManager;
-    
-    [Inject] private GameTimer _gameTimer;
 
+    [Header("Lose-Win panels")]
+    [SerializeField] private GameObject _winPanel;
+    [SerializeField] private GameObject _losePanel;
+
+    [Inject] private GameTimer _gameTimer;
     private int _targetCount;
+
+    public static Action OnGameLose;
+    public static Action OnGameWin;
+
     private void OnEnable()
     {
-
         Target.OnTargetDamage += DecreaseTargetCount;
-        
+        OnGameWin += EnableWinPanel;
+        OnGameLose += OnGameLose;
     }
     private void OnDisable()
     {
         Target.OnTargetDamage -= DecreaseTargetCount;
-        
+        OnGameWin -= EnableWinPanel;
+        OnGameLose -= OnGameLose; 
     }
 
     private void Awake()
@@ -52,7 +61,12 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Target count {_targetCount}");
 
         if (_targetCount <= 0)
-            Debug.Log("WIN");
-
+        {
+            OnGameWin?.Invoke();
+        }
     }
+    private void EnableWinPanel() => _winPanel.SetActive(true); 
+    private void EnableLosePanel() => _losePanel.SetActive(true); 
+        
+
 }
